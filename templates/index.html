@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Management System</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container mt-5">
+    <h2 class="mb-3">Book Management System</h2>
+
+    <div class="card mb-4">
+        <div class="card-body">
+            <h5 class="card-title">Add New Book</h5>
+            <form action="/add-cart" method="post">
+                <div class="form-group">
+                    
+                <button type="submit" class="btn btn-primary">Add Book</button>
+            </form>
+        </div>
+    </div>                                                                                                            
+
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">List of Books</h5>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Published Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{range .}}
+                    <tr>
+                        <td>{{.ID}}</td>
+                        <td>{{.Title}}</td>
+                        <td>{{.Author}}</td>
+                        <td>{{.PublishedDate.Format "2006-01-02"}}</td>
+                        <td>
+                            <form action="/delete-book" method="post" style="display:inline;">
+                                <input type="hidden" name="book_id" value="{{.ID}}">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                            <form action="/update-book" method="get" style="display:inline;">
+                                <input type="hidden" name="book_id" value="{{.ID}}">
+                                <button type="submit" class="btn btn-primary">Update</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {{end}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
+
