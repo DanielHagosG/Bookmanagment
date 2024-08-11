@@ -8,7 +8,7 @@ import (
 )
 
 func Connect() (*sql.DB, error) {
-	dsn := "root:162612@tcp(localhost:1993)/booksDB"
+	dsn := "root:******@tcp(localhost:****)/booksDB"
 
 	db, err := sql.Open("mysql", dsn)
 	if err != nil {
